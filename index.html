@@ -2,347 +2,138 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>العراق — دولة عربية في آسيا</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;display=swap');
-        
-        :root {
-            --tw-color-primary: #15803d;
-        }
-        
         body {
-            font-family: 'Amiri', system-ui, sans-serif;
-        }
-        
-        .slide {
-            display: none;
-            min-height: 100vh;
-            padding: 4rem 6rem;
-            background: linear-gradient(135deg, #f8f9f8 0%, #e8f5e9 100%);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .slide.active {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-        }
-        
-        .title-slide {
-            background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-            color: white;
-        }
-        
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.95);
-            border-bottom: 3px solid #15803d;
-            z-index: 50;
-            padding: 1rem 3rem;
-            display: flex;
             align-items: center;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
-        .content {
-            max-width: 1100px;
-            margin: 0 auto;
-            flex: 1;
+        .slide {
+            background-color: white;
+            width: 800px;
+            height: 450px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        .bullet {
-            font-size: 1.65rem;
-            line-height: 2.4;
-            margin-bottom: 1rem;
-            padding-right: 1.5rem;
-            position: relative;
+        .title-slide {
+            text-align: center;
         }
-        
-        .bullet:before {
-            content: "◉";
-            color: #15803d;
-            position: absolute;
-            right: 0;
-            font-size: 1.8rem;
+        h1 {
+            color: #2c3e50;
+            font-size: 36px;
         }
-        
-        .nav-btn {
-            transition: all 0.3s ease;
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
         }
-        
-        .nav-btn:hover {
-            transform: scale(1.1);
-            background-color: #15803d;
-            color: white;
+        ul {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #333;
         }
-        
-        .image-container {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        li {
+            margin-bottom: 10px;
+        }
+        .image-placeholder {
+            background-color: #ecf0f1;
+            border: 2px dashed #bdc3c7;
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            margin-top: 15px;
+            border-radius: 5px;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- HEADER -->
-    <div class="header">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl">🇮🇶</div>
-            <div>
-                <h1 class="text-2xl font-bold text-emerald-800">العراق — دولة عربية في آسيا</h1>
-                <p class="text-emerald-700 text-sm">عرض تقديمي — 10-15 دقيقة</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-8 text-emerald-800">
-            <span id="slide-number" class="font-mono text-2xl font-bold">01 / 09</span>
-            <div class="flex gap-4">
-                <button onclick="prevSlide()" 
-                        class="nav-btn w-12 h-12 rounded-2xl border-2 border-emerald-700 flex items-center justify-center text-3xl hover:bg-emerald-700 hover:text-white">
-                    ←
-                </button>
-                <button onclick="nextSlide()" 
-                        class="nav-btn w-12 h-12 rounded-2xl border-2 border-emerald-700 flex items-center justify-center text-3xl hover:bg-emerald-700 hover:text-white">
-                    →
-                </button>
-            </div>
-        </div>
-        <div class="text-emerald-700 text-sm font-medium">اضغط ESC للوضع الكامل الشاشة</div>
+    <div class="slide title-slide">
+        <h1>العراق — دولة عربية في آسيا</h1>
+        <h2>[Your Name] & [Partner's Name]</h2>
+        <div class="image-placeholder">[Image 1: Map or Flag of Iraq]</div>
     </div>
 
-    <!-- SLIDE 1: TITLE -->
-    <section id="slide-1" class="slide title-slide active flex items-center justify-center text-center">
-        <div class="content max-w-4xl mx-auto">
-            <div class="flex justify-center mb-8">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Iraq.svg/1200px-Flag_of_Iraq.svg.png" 
-                     alt="علم العراق" class="w-48 h-32 object-contain drop-shadow-2xl">
-            </div>
-            <h1 class="text-7xl font-bold mb-6 leading-none">العراق</h1>
-            <h2 class="text-5xl font-medium mb-12">دولة عربية في آسيا</h2>
-            <p class="text-3xl opacity-90">عرض تقديمي تعليمي</p>
-            <div class="mt-20 text-2xl opacity-75">جاهز للتعرف على مهد الحضارات؟</div>
-        </div>
-    </section>
+    <div class="slide">
+        <h2>الجغرافيا</h2>
+        <ul>
+            <li>يقع في غرب آسيا (منطقة الشرق الأوسط).</li>
+            <li>يحده إيران وتركيا وسوريا والأردن والسعودية والكويت.</li>
+            <li>العاصمة: بغداد.</li>
+            <li>أهم الأنهار: دجلة والفرات (محور التاريخ والحضارة).</li>
+            <li>تغطي الصحراء معظم أراضيه، وتنتشر الجبال في كردستان (الشمال).</li>
+        </ul>
+    </div>
 
-    <!-- SLIDE 2: الجغرافيا -->
-    <section id="slide-2" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">الجغرافيا</h1>
-            <div class="grid grid-cols-2 gap-12">
-                <div>
-                    <ul class="space-y-8">
-                        <li class="bullet">يقع في غرب آسيا (منطقة الشرق الأوسط)</li>
-                        <li class="bullet">يحده: إيران، تركيا، سوريا، الأردن، السعودية، الكويت</li>
-                        <li class="bullet">العاصمة: <span class="font-bold text-emerald-700">بَغْدَاد</span></li>
-                        <li class="bullet">أهم الأنهار: <span class="font-bold text-emerald-700">دَجْلَة</span> و<span class="font-bold text-emerald-700">الْفُرَات</span></li>
-                        <li class="bullet">معظم الأرض صحراء، والجبال في الشمال (إقليم كردستان)</li>
-                    </ul>
-                </div>
-                <div class="image-container rounded-3xl overflow-hidden bg-white p-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag-map_of_Iraq.svg/800px-Flag-map_of_Iraq.svg.png" 
-                         alt="خريطة العراق" class="w-full h-full object-contain">
-                    <p class="text-center text-emerald-700 mt-4 text-xl font-medium">خريطة العراق وموقعه في آسيا</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="slide">
+        <h2>التاريخ</h2>
+        <ul>
+            <li>موطن بلاد الرافدين، ويُلقَّب بـ"مهد الحضارات".</li>
+            <li>عاش فيها السومريون والبابليون والآشوريون.</li>
+            <li>نال استقلاله عام 1932 (مملكة)، ثم أصبح جمهورية عام 1958.</li>
+            <li>أدى الغزو عام 2003 إلى الإطاحة بالنظام السابق، وبدء مرحلة إعادة الإعمار.</li>
+        </ul>
+        <div class="image-placeholder">[Image 2: Ancient Mesopotamian Ruins / Ziggurat]</div>
+    </div>
 
-    <!-- SLIDE 3: التاريخ -->
-    <section id="slide-3" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">التاريخ</h1>
-            <ul class="space-y-8 text-2xl">
-                <li class="bullet">موطن <span class="font-bold text-emerald-700">بِلَادِ الرَّافِدَيْن</span> (ميزوبوتاميا) — <span class="font-bold">مَهْدُ الْحَضَارَات</span></li>
-                <li class="bullet">عاش فيه السومريون والبابليون والآشوريون</li>
-                <li class="bullet">كان جزءاً من الدولة العثمانية حتى ما بعد الحرب العالمية الأولى</li>
-                <li class="bullet">نال الاستقلال عام 1932 مملكةً، ثم أصبح جمهورية عام 1958</li>
-                <li class="bullet">حكم صدام حسين حكماً دكتاتورياً (1979-2003)</li>
-                <li class="bullet">الغزو الأمريكي 2003 أدى إلى سقوطه، ولا يزال العراق في مرحلة إعادة الإعمار</li>
-            </ul>
-        </div>
-    </section>
+    <div class="slide">
+        <h2>الثقافة والاقتصاد</h2>
+        <ul>
+            <li><strong>السكان:</strong> حوالي 42 مليون نسمة.</li>
+            <li><strong>اللغات:</strong> العربية والكردية.</li>
+            <li><strong>الثقافة:</strong> يشتهر بالفنون، الشعر، الهندسة، وأطباق مثل الكباب.</li>
+            <li><strong>الاقتصاد:</strong> من أكبر منتجي النفط عالمياً (الحصة الأكبر من الإيرادات).</li>
+            <li>تتواجد الزراعة على امتداد نهري دجلة والفرات.</li>
+        </ul>
+    </div>
 
-    <!-- SLIDE 4: الثقافة والشعب -->
-    <section id="slide-4" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">الثقافة والشعب</h1>
-            <ul class="space-y-8 text-2xl">
-                <li class="bullet">عدد السكان: حوالي 42 مليون نسمة</li>
-                <li class="bullet">اللغتان الرسميتان: <span class="font-bold text-emerald-700">الْعَرَبِيَّة</span> و<span class="font-bold text-emerald-700">الْكُرْدِيَّة</span></li>
-                <li class="bullet">الديانة الرئيسية: الإسلام (سني وشيعي)</li>
-                <li class="bullet">يشتهر بفنونه العريقة وشعره وهندسته المعمارية الأصيلة</li>
-                <li class="bullet">أبرز الأطباق: الكباب، أطباق الأرز، الخبز العربي، لحم الضأن</li>
-            </ul>
-        </div>
-    </section>
+    <div class="slide">
+        <h2>نظام الحكم</h2>
+        <ul>
+            <li>جمهورية برلمانية اتحادية (فيدرالية).</li>
+            <li>يتألف من: رئيس الجمهورية، رئيس الوزراء، ومجلس النواب.</li>
+            <li>تم إقرار الدستور الحالي عام 2005.</li>
+        </ul>
+        <div class="image-placeholder">[Image 3: Iraqi Parliament Building or Baghdad skyline]</div>
+    </div>
 
-    <!-- SLIDE 5: الاقتصاد -->
-    <section id="slide-5" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">الاقتصاد</h1>
-            <ul class="space-y-8 text-2xl">
-                <li class="bullet">من أكبر منتجي النفط في العالم</li>
-                <li class="bullet">النفط يشكل الحصة الأكبر من الإيرادات الحكومية</li>
-                <li class="bullet">يعتمد الاقتصاد بشكل كبير على صادرات البترول</li>
-                <li class="bullet">الزراعة منتشرة على امتداد واديي دجلة والفرات</li>
-                <li class="bullet">يواجه تحديات كبيرة بسبب سنوات الصراعات وعدم الاستقرار</li>
-            </ul>
-        </div>
-    </section>
+    <div class="slide">
+        <h2>المفردات (Vocabulary)</h2>
+        <ul>
+            <li>1. العاصمة (Al-'Asimah) - Capital</li>
+            <li>2. الأنهار (Al-Anhar) - Rivers</li>
+            <li>3. الصحراء (As-Sahra') - Desert</li>
+            <li>4. حضارة (Hadarah) - Civilization</li>
+            <li>5. استقلال (Istiqlal) - Independence</li>
+            <li>6. اقتصاد (Iqtisad) - Economy</li>
+            <li>7. نفط (Naft) - Oil</li>
+            <li>8. حكومة (Hukumah) - Government</li>
+        </ul>
+    </div>
 
-    <!-- SLIDE 6: نظام الحكم -->
-    <section id="slide-6" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">نظام الحكم</h1>
-            <ul class="space-y-8 text-2xl">
-                <li class="bullet">جمهورية برلمانية اتحادية (فيدرالية)</li>
-                <li class="bullet">يتكون من: رئيس الجمهورية + رئيس الوزراء + مجلس النواب</li>
-                <li class="bullet">الدستور أُقر عام 2005 بعد سقوط نظام صدام حسين</li>
-            </ul>
-        </div>
-    </section>
+    <div class="slide">
+        <h2>أسئلة للفصل والنشاط</h2>
+        <ul>
+            <li>1. ما اسما النهرين الرئيسيين اللذين يجريان عبر العراق؟</li>
+            <li>2. ما اسم الحضارة القديمة التي نشأت في العراق؟</li>
+            <li>3. ما اللغتان الرسميتان في العراق؟</li>
+            <li>4. ما المورد الطبيعي الأساسي للعراق؟</li>
+            <li>5. ما التغيير السياسي الكبير الذي شهده العراق عام 2003؟</li>
+        </ul>
+        <div class="image-placeholder"><strong>Activity:</strong> [Insert Link to Kahoot on Iraqi History & Geography here]</div>
+    </div>
 
-    <!-- SLIDE 7: المفردات (8+ كلمات) -->
-    <section id="slide-7" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">المفردات (8 كلمات إلزامية)</h1>
-            <div class="grid grid-cols-2 gap-x-16 gap-y-10 text-2xl">
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">دَجْلَة</span>
-                    <span class="text-emerald-600">نهر دجلة</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">الْفُرَات</span>
-                    <span class="text-emerald-600">نهر الفرات</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">بَغْدَاد</span>
-                    <span class="text-emerald-600">عاصمة العراق</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">بِلَادُ الرَّافِدَيْن</span>
-                    <span class="text-emerald-600">ميزوبوتاميا</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">مَهْدُ الْحَضَارَات</span>
-                    <span class="text-emerald-600">Cradle of Civilizations</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">النَّفْط</span>
-                    <span class="text-emerald-600">Oil / البترول</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">جُمْهُورِيَّة اِتِّحَادِيَّة</span>
-                    <span class="text-emerald-600">Federal Republic</span>
-                </div>
-                <div class="flex justify-between items-center border-b border-emerald-200 pb-3">
-                    <span class="font-bold text-emerald-700">الْكُرْدِيَّة</span>
-                    <span class="text-emerald-600">اللغة الكردية</span>
-                </div>
-            </div>
-            <p class="text-center text-emerald-700 mt-12 text-xl">كل كلمة لها حركات للنطق الصحيح ✓</p>
-        </div>
-    </section>
-
-    <!-- SLIDE 8: الأسئلة للفصل -->
-    <section id="slide-8" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-12 border-b-4 border-emerald-600 pb-4 inline-block">أسئلة للفصل (5 أسئلة)</h1>
-            <ol class="space-y-10 text-2xl list-decimal list-inside">
-                <li class="bullet">ما اسما النهرين الرئيسيين اللذين يجريان عبر العراق، ولماذا يحملان أهمية تاريخية بالغة؟</li>
-                <li class="bullet">ما اسم الحضارة القديمة التي نشأت في العراق، ولماذا يُلقَّب بـ«مهد الحضارات»؟</li>
-                <li class="bullet">ما اللغتان الرسميتان في العراق؟</li>
-                <li class="bullet">ما المورد الطبيعي الأساسي للعراق وأكبر مصادر إيراداته؟</li>
-                <li class="bullet">ما التغيير السياسي الكبير الذي شهده العراق عام 2003؟</li>
-            </ol>
-        </div>
-    </section>
-
-    <!-- SLIDE 9: النشاط -->
-    <section id="slide-9" class="slide">
-        <div class="content">
-            <h1 class="text-5xl font-bold text-emerald-800 mb-8 border-b-4 border-emerald-600 pb-4 inline-block">النشاط: البحث عن الكلمات (Word Search)</h1>
-            <p class="text-2xl mb-8 text-center">ابحث عن الكلمات التالية في الجدول (أفقياً أو رأسياً):</p>
-            
-            <div class="flex gap-16 justify-center">
-                <!-- Word List -->
-                <div class="bg-white rounded-3xl shadow-xl p-8 w-72">
-                    <h3 class="font-bold text-xl mb-6 text-emerald-700">الكلمات المطلوبة:</h3>
-                    <ul class="space-y-4 text-xl">
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> دَجْلَة</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> الْفُرَات</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> بَغْدَاد</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> النَّفْط</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> عِرَاق</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> حَضَارَة</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> جُمْهُورِيَّة</li>
-                        <li class="flex items-center gap-3"><span class="text-3xl">◉</span> كُرْدِيَّة</li>
-                    </ul>
-                </div>
-                
-                <!-- Word Search Grid -->
-                <table class="border-4 border-emerald-800 text-4xl font-bold bg-white shadow-2xl rounded-3xl overflow-hidden">
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">ب</td><td class="border border-emerald-300 w-16 h-16 text-center">غ</td><td class="border border-emerald-300 w-16 h-16 text-center">د</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">د</td><td class="border border-emerald-300 w-16 h-16 text-center">ف</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">ت</td><td class="border border-emerald-300 w-16 h-16 text-center">ح</td><td class="border border-emerald-300 w-16 h-16 text-center">ض</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td><td class="border border-emerald-300 w-16 h-16 text-center">ة</td><td class="border border-emerald-300 w-16 h-16 text-center">ق</td><td class="border border-emerald-300 w-16 h-16 text-center">ك</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">ع</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">ق</td><td class="border border-emerald-300 w-16 h-16 text-center">ن</td><td class="border border-emerald-300 w-16 h-16 text-center">ف</td><td class="border border-emerald-300 w-16 h-16 text-center">ط</td><td class="border border-emerald-300 w-16 h-16 text-center">د</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">ج</td><td class="border border-emerald-300 w-16 h-16 text-center">م</td><td class="border border-emerald-300 w-16 h-16 text-center">ه</td><td class="border border-emerald-300 w-16 h-16 text-center">و</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td><td class="border border-emerald-300 w-16 h-16 text-center">ي</td><td class="border border-emerald-300 w-16 h-16 text-center">ة</td><td class="border border-emerald-300 w-16 h-16 text-center">ج</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">ل</td><td class="border border-emerald-300 w-16 h-16 text-center">ة</td><td class="border border-emerald-300 w-16 h-16 text-center">ف</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">ت</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">ل</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">د</td><td class="border border-emerald-300 w-16 h-16 text-center">ي</td><td class="border border-emerald-300 w-16 h-16 text-center">ة</td><td class="border border-emerald-300 w-16 h-16 text-center">ك</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td><td class="border border-emerald-300 w-16 h-16 text-center">د</td><td class="border border-emerald-300 w-16 h-16 text-center">ي</td><td class="border border-emerald-300 w-16 h-16 text-center">ة</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">ت</td><td class="border border-emerald-300 w-16 h-16 text-center">ح</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">د</td><td class="border border-emerald-300 w-16 h-16 text-center">ي</td><td class="border border-emerald-300 w-16 h-16 text-center">ة</td><td class="border border-emerald-300 w-16 h-16 text-center">ر</td></tr>
-                    <tr><td class="border border-emerald-300 w-16 h-16 text-center">م</td><td class="border border-emerald-300 w-16 h-16 text-center">ه</td><td class="border border-emerald-300 w-16 h-16 text-center">د</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td><td class="border border-emerald-300 w-16 h-16 text-center">ل</td><td class="border border-emerald-300 w-16 h-16 text-center">ح</td><td class="border border-emerald-300 w-16 h-16 text-center">ض</td><td class="border border-emerald-300 w-16 h-16 text-center">ا</td></tr>
-                </table>
-            </div>
-            
-            <p class="text-center text-xl text-emerald-700 mt-10">يمكن للطلاب طباعة الجدول أو استخدامه على الشاشة • النشاط يعزز الذاكرة والمفردات ✓</p>
-            <p class="text-center text-emerald-600 mt-4">(مدة النشاط: 4-5 دقائق + مناقشة)</p>
-        </div>
-    </section>
-
-    <script>
-        let currentSlide = 1;
-        const totalSlides = 9;
-
-        function showSlide(n) {
-            document.querySelectorAll('.slide').forEach(slide => {
-                slide.classList.remove('active');
-            });
-            const slideEl = document.getElementById(`slide-${n}`);
-            if (slideEl) slideEl.classList.add('active');
-            
-            document.getElementById('slide-number').textContent = 
-                `${String(n).padStart(2, '0')} / 0${totalSlides}`;
-        }
-
-        function nextSlide() {
-            currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = currentSlide <= 1 ? totalSlides : currentSlide - 1;
-            showSlide(currentSlide);
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'Escape') {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen();
-                } else {
-                    document.exitFullscreen();
-                }
-            }
-        });
-
-        // Tailwind script already loaded
-        console.log('%c✅ HTML Presentation for Iraq loaded successfully! (Arabic + Harakah + Activity)', 'color: #15803d; font-size: 16px; font-weight: bold');
-    </script>
 </body>
 </html>
