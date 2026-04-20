@@ -1,139 +1,851 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>العراق — دولة عربية في آسيا</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .slide {
-            background-color: white;
-            width: 800px;
-            height: 450px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 40px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .title-slide {
-            text-align: center;
-        }
-        h1 {
-            color: #2c3e50;
-            font-size: 36px;
-        }
-        h2 {
-            color: #34495e;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        ul {
-            font-size: 20px;
-            line-height: 1.6;
-            color: #333;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        .image-placeholder {
-            background-color: #ecf0f1;
-            border: 2px dashed #bdc3c7;
-            text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
-            margin-top: 15px;
-            border-radius: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Ramadan Reflection</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #04071a;
+    --deep: #080d2e;
+    --navy: #0b1245;
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --gold-pale: #ffe9a0;
+    --silver: #a8b8d8;
+    --white: #f5f0e8;
+    --accent: #7b9fd4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--night);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  #stars-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .slides-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .slide.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-dots {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.3);
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 1.4vw, 14px);
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 400;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .section-title em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── SLIDE 1: COVER ── */
+  #slide-1 {
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 30%, #12205a 0%, #04071a 70%);
+  }
+
+  .cover-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 1.5vw, 15px);
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 20px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 9vw, 90px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--white);
+    text-shadow: 0 0 50px rgba(201,168,76,0.25);
+    margin-bottom: 10px;
+  }
+
+  .cover-title em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .cover-sub {
+    font-size: clamp(15px, 2.5vw, 22px);
+    color: var(--silver);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+
+  .cover-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  .mosque-silhouette {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    overflow: hidden;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold);
+    opacity: 0.5;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeUpDown 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUpDown {
+    0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 0.7; transform: translateX(-50%) translateY(5px); }
+  }
+
+  /* ── SLIDE 2: THE NIGHT BEGINS ── */
+  #slide-2 {
+    background: radial-gradient(ellipse at 30% 60%, #0d1e55 0%, #04071a 65%);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .time-block {
+    text-align: center;
+  }
+
+  .glow-ring {
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+    margin: 20px auto;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    animation: pulse-ring 3s ease-in-out infinite;
+  }
+
+  .glow-ring::before {
+    content: '';
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.35);
+    animation: pulse-ring 3s ease-in-out infinite 0.5s;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    50% { box-shadow: 0 0 30px 5px rgba(201,168,76,0.15); }
+  }
+
+  .big-time {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(52px, 9vw, 100px);
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    text-shadow: 0 0 60px rgba(201,168,76,0.4);
+    display: block;
+  }
+
+  .time-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    letter-spacing: 5px;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+
+  .text-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 38px);
+    color: var(--gold-light);
+    font-weight: 400;
+    margin-bottom: 22px;
+    line-height: 1.25;
+  }
+
+  .text-block p {
+    font-size: clamp(16px, 1.8vw, 21px);
+    line-height: 1.85;
+    color: var(--silver);
+    font-weight: 300;
+  }
+
+  /* ── SLIDE 3: QIYAM ── */
+  #slide-3 {
+    background: radial-gradient(ellipse at 70% 40%, #0f1e50 0%, #04071a 65%);
+  }
+
+  .qiyam-body {
+    max-width: 740px;
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  .qiyam-body p {
+    font-size: clamp(17px, 2vw, 23px);
+    line-height: 1.9;
+    color: var(--silver);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .pull-quote {
+    margin: 36px auto;
+    max-width: 560px;
+    padding: 28px 36px;
+    border-left: 2px solid var(--gold);
+    border-right: 2px solid var(--gold);
+    background: rgba(201,168,76,0.04);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.4vw, 26px);
+    color: var(--gold-pale);
+    line-height: 1.6;
+  }
+
+  /* ── SLIDE 4: THE KHATMS ── */
+  #slide-4 {
+    background: radial-gradient(ellipse at 50% 50%, #0c1840 0%, #04071a 65%);
+  }
+
+  .khatm-body {
+    max-width: 820px;
+    width: 100%;
+    margin-top: 36px;
+  }
+
+  .khatm-body p {
+    font-size: clamp(16px, 1.9vw, 22px);
+    line-height: 1.9;
+    color: var(--silver);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .khatm-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 36px;
+  }
+
+  .khatm-card {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 4px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .khatm-card:hover {
+    border-color: rgba(201,168,76,0.45);
+    background: rgba(201,168,76,0.09);
+  }
+
+  .khatm-card .icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .khatm-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+
+  .khatm-card p {
+    font-size: 15px;
+    color: var(--silver);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  /* ── SLIDE 5: AFTER THE PRAYER ── */
+  #slide-5 {
+    background: radial-gradient(ellipse at 20% 70%, #10204a 0%, #04071a 65%);
+  }
+
+  .after-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 960px;
+    width: 100%;
+    align-items: start;
+    margin-top: 40px;
+  }
+
+  .after-col p {
+    font-size: clamp(16px, 1.8vw, 21px);
+    line-height: 1.9;
+    color: var(--silver);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .after-col-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 16px;
+  }
+
+  .after-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.8vw, 30px);
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+
+  .vert-line {
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    align-self: stretch;
+    justify-self: center;
+  }
+
+  /* ── SLIDE 6: PERSONAL GROWTH + UMMAH ── */
+  #slide-6 {
+    background: radial-gradient(ellipse at 60% 30%, #0d1e55 0%, #04071a 65%);
+  }
+
+  .growth-body {
+    max-width: 820px;
+    width: 100%;
+    margin-top: 36px;
+  }
+
+  .growth-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .g-line {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    font-size: clamp(16px, 1.8vw, 21px);
+    color: var(--silver);
+    font-weight: 300;
+    line-height: 1.75;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .g-line:last-child {
+    border-bottom: none;
+  }
+
+  .g-num {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold);
+    opacity: 0.6;
+    letter-spacing: 1px;
+    padding-top: 4px;
+  }
+
+  /* ── SLIDE 7: WHAT STAYS ── */
+  #slide-7 {
+    background: radial-gradient(ellipse at 50% 40%, #12205a 0%, #04071a 70%);
+    text-align: center;
+  }
+
+  .closing-body {
+    max-width: 680px;
+    margin-top: 36px;
+  }
+
+  .closing-body p {
+    font-size: clamp(17px, 2vw, 23px);
+    line-height: 1.9;
+    color: var(--silver);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .closing-stamp {
+    display: inline-block;
+    margin-top: 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    opacity: 0.65;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+
+  @media (max-width: 700px) {
+    .two-col, .after-layout { grid-template-columns: 1fr; gap: 36px; }
+    .vert-line { display: none; }
+    .khatm-cards { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="slide title-slide">
-        <h1>العراق — دولة عربية في آسيا</h1>
-        <h2>[Your Name] & [Partner's Name]</h2>
-        <div class="image-placeholder">[Image 1: Map or Flag of Iraq]</div>
+<canvas id="stars-canvas"></canvas>
+
+<nav class="nav-dots">
+  <div class="dot active"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</nav>
+
+<div class="slides-wrapper">
+
+  <!-- SLIDE 1: COVER -->
+  <div class="slide" id="slide-1">
+    <div class="cover-eyebrow">Ramadan 1446 &nbsp;·&nbsp; A Personal Reflection</div>
+    <h1 class="cover-title">
+      A <em>Ramadan</em><br>Reflection
+    </h1>
+    <p class="cover-sub">Faith, friendship, and the late nights in between</p>
+    <div class="divider" style="margin-bottom: 32px;"></div>
+    <span class="cover-tag">Community &amp; Togetherness</span>
+
+    <div class="mosque-silhouette">
+      <svg viewBox="0 0 1200 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <defs>
+          <linearGradient id="mg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a2d6e" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#04071a" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="130" width="1200" height="50" fill="url(#mg1)"/>
+        <!-- main dome -->
+        <ellipse cx="600" cy="80" rx="80" ry="60" fill="url(#mg1)"/>
+        <rect x="520" y="80" width="160" height="55" fill="url(#mg1)"/>
+        <!-- side domes -->
+        <ellipse cx="440" cy="98" rx="50" ry="38" fill="url(#mg1)"/>
+        <rect x="390" y="98" width="100" height="36" fill="url(#mg1)"/>
+        <ellipse cx="760" cy="98" rx="50" ry="38" fill="url(#mg1)"/>
+        <rect x="710" y="98" width="100" height="36" fill="url(#mg1)"/>
+        <!-- minarets -->
+        <rect x="355" y="36" width="18" height="98" fill="url(#mg1)"/>
+        <polygon points="364,18 353,38 375,38" fill="url(#mg1)"/>
+        <rect x="827" y="36" width="18" height="98" fill="url(#mg1)"/>
+        <polygon points="836,18 825,38 847,38" fill="url(#mg1)"/>
+        <!-- far minarets -->
+        <rect x="210" y="70" width="12" height="64" fill="url(#mg1)"/>
+        <polygon points="216,56 208,72 224,72" fill="url(#mg1)"/>
+        <rect x="978" y="70" width="12" height="64" fill="url(#mg1)"/>
+        <polygon points="984,56 976,72 992,72" fill="url(#mg1)"/>
+        <!-- arches -->
+        <path d="M540,135 Q560,108 580,135" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.35"/>
+        <path d="M580,135 Q600,108 620,135" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.35"/>
+        <path d="M620,135 Q640,108 660,135" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.35"/>
+        <text x="594" y="36" font-size="20" fill="#c9a84c" opacity="0.85">&#9789;</text>
+      </svg>
     </div>
 
-    <div class="slide">
-        <h2>الجغرافيا</h2>
-        <ul>
-            <li>يقع في غرب آسيا (منطقة الشرق الأوسط).</li>
-            <li>يحده إيران وتركيا وسوريا والأردن والسعودية والكويت.</li>
-            <li>العاصمة: بغداد.</li>
-            <li>أهم الأنهار: دجلة والفرات (محور التاريخ والحضارة).</li>
-            <li>تغطي الصحراء معظم أراضيه، وتنتشر الجبال في كردستان (الشمال).</li>
-        </ul>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <svg width="12" height="18" viewBox="0 0 12 18" fill="none"><path d="M6 0v14M1 9l5 5 5-5" stroke="#c9a84c" stroke-width="1.2"/></svg>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: THE NIGHT BEGINS -->
+  <div class="slide" id="slide-2">
+    <div class="section-label">Introduction</div>
+    <div class="section-title">The Night <em>Begins</em></div>
+    <div class="divider" style="margin-top: 16px;"></div>
+
+    <div class="two-col">
+      <div class="time-block">
+        <div class="glow-ring">
+          <div>
+            <span class="big-time">3:00</span>
+            <span class="time-label">A.M.</span>
+          </div>
+        </div>
+        <p style="font-style:italic; color:var(--silver); font-size:16px; margin-top:8px; letter-spacing:1px;">
+          The Last Ten Nights of Ramadan
+        </p>
+      </div>
+
+      <div class="text-block">
+        <h2>The world was asleep.<br>We were not.</h2>
+        <p>
+          This Ramadan was not just about fasting. It was late nights, long prayers, and the kind of time spent with friends and community that you do not forget.
+        </p>
+        <br>
+        <p>
+          It started with a walk to the masjid at 3 in the morning, when the streets were quiet and the sky still belonged to the stars. That walk, repeated night after night, became the rhythm of the whole month.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: QIYAM -->
+  <div class="slide" id="slide-3">
+    <div class="section-label">Night Worship</div>
+    <div class="section-title">Qiyam: <em>The Quiet Hours</em></div>
+    <div class="divider" style="margin-top: 16px;"></div>
+
+    <div class="qiyam-body">
+      <p>
+        Qiyam al-Layl is not easy. It asks you to give up sleep, comfort, and the warmth of your bed, often when your body is already tired from fasting. But something shifts when you stand in prayer at that hour.
+      </p>
+
+      <div class="pull-quote">
+        Those quiet late-night prayers felt more personal and peaceful than any other time of the year. It was a time to reflect, make du'a, and feel closer to Allah without distractions.
+      </div>
+
+      <p>
+        The stillness of the night strips everything away. No phone, no noise, no rush. Just prayer, breath, and presence. The tiredness itself becomes part of it. You feel it, and you keep going anyway, and that choice is the whole point.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: THE KHATMS -->
+  <div class="slide" id="slide-4">
+    <div class="section-label">Community</div>
+    <div class="section-title">The <em>Khatms</em></div>
+    <div class="divider" style="margin-top: 16px;"></div>
+
+    <div class="khatm-body">
+      <p>
+        Different friend groups held their own taraweehs throughout Ramadan. When each group finished reading the full Quran, they held a khatm, and we went to as many as we could.
+      </p>
+      <p>
+        Standing in those rooms, next to people our own age who were all reaching for the same thing, asking for the same forgiveness, was something that is hard to put into words. There was a strength in it.
+      </p>
+
+      <div class="khatm-cards">
+        <div class="khatm-card">
+          <h3>Multiple Masajid</h3>
+          <p>Different spaces, different groups, the same shared intention running through all of them.</p>
+        </div>
+        <div class="khatm-card">
+          <h3>People Our Age</h3>
+          <p>Being surrounded by friends in sujood, our generation choosing this, made it feel real and alive.</p>
+        </div>
+        <div class="khatm-card">
+          <h3>The Full Quran</h3>
+          <p>Each khatm marked the completion of the entire Quran. A moment worth witnessing again and again.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: AFTER THE PRAYER -->
+  <div class="slide" id="slide-5">
+    <div class="section-label">Friendship</div>
+    <div class="section-title">After <em>the Prayer</em></div>
+    <div class="divider" style="margin-top: 16px;"></div>
+
+    <div class="after-layout">
+      <div class="after-col">
+        <div class="after-col-label">Inside the Masjid</div>
+        <h3>Talking, laughing, sitting together after Taraweeh</h3>
+        <p>
+          After prayers, the time we spent with friends at the mosque was its own kind of worship. There was nothing formal about it. Just people who had prayed together, staying together.
+        </p>
+        <p>
+          Those conversations, the shared exhaustion and shared joy, became some of the strongest memories of the month.
+        </p>
+      </div>
+
+      <div class="vert-line"></div>
+
+      <div class="after-col">
+        <div class="after-col-label">Beyond the Doors</div>
+        <h3>The nights that stretched past midnight</h3>
+        <p>
+          Sometimes we went out after taraweeh, eating and talking into the early hours. It was not separate from Ramadan. It was part of it.
+        </p>
+        <p>
+          Joy and brotherhood are part of the deen too. Ramadan has room for both the sujood and the laughter that comes after.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: WHAT IT BUILT -->
+  <div class="slide" id="slide-6">
+    <div class="section-label">Personal Growth &amp; Broader Impact</div>
+    <div class="section-title">What It <em>Built</em></div>
+    <div class="divider" style="margin-top: 16px;"></div>
+
+    <div class="growth-body">
+      <div class="growth-lines">
+        <div class="g-line">
+          <span class="g-num">01</span>
+          <span>Waking up for suhoor, fasting all day, and showing up at the masjid night after night built a discipline I did not know I had. Ramadan showed me what consistency actually feels like when the intention behind it is sincere.</span>
+        </div>
+        <div class="g-line">
+          <span class="g-num">02</span>
+          <span>Patience and gratitude are not ideas. They are practiced. Every hunger pang, every late night, every moment of choosing prayer over comfort was a small lesson in both.</span>
+        </div>
+        <div class="g-line">
+          <span class="g-num">03</span>
+          <span>Being surrounded by others who were fasting and praying created something larger than any individual experience. Our circle of friends was a small mirror of what was happening in millions of homes worldwide.</span>
+        </div>
+        <div class="g-line">
+          <span class="g-num">04</span>
+          <span>Ramadan is never just personal. The communal dimension, praying in rows, finishing the Quran together, is part of what makes it meaningful. It is something shared by the whole Ummah.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: WHAT STAYS -->
+  <div class="slide" id="slide-7">
+    <div class="section-label">Conclusion</div>
+    <div class="section-title">What <em>Stays</em></div>
+    <div class="divider" style="margin-top: 16px;"></div>
+
+    <div class="closing-body">
+      <p>
+        When Ramadan ended, it did not just leave behind memories. It left behind habits, a closeness to Allah (SWT), and a deeper appreciation for the people around me.
+      </p>
+      <p>
+        The late nights were hard. The fasting was hard. But the version of myself that came out of those thirty days was someone who had pushed through something real, alongside people who were doing the same.
+      </p>
+      <p>
+        What I will carry from this Ramadan is not just what happened inside the masjid, but the understanding that faith is something you build together. In the quiet hours before fajr. In the khatm circles with friends. In the laughter after taraweeh. All of it was Ramadan. All of it was meaningful.
+      </p>
+
+      <div class="closing-stamp">Ramadan Mubarak &nbsp;·&nbsp; 1446 AH</div>
     </div>
 
-    <div class="slide">
-        <h2>التاريخ</h2>
-        <ul>
-            <li>موطن بلاد الرافدين، ويُلقَّب بـ"مهد الحضارات".</li>
-            <li>عاش فيها السومريون والبابليون والآشوريون.</li>
-            <li>نال استقلاله عام 1932 (مملكة)، ثم أصبح جمهورية عام 1958.</li>
-            <li>أدى الغزو عام 2003 إلى الإطاحة بالنظام السابق، وبدء مرحلة إعادة الإعمار.</li>
-        </ul>
-        <div class="image-placeholder">[Image 2: Ancient Mesopotamian Ruins / Ziggurat]</div>
+    <div style="position:relative; margin-top:50px; width:100%; height:120px; overflow:hidden;">
+      <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <defs>
+          <linearGradient id="mg2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a2d6e" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#04071a" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="90" width="1200" height="30" fill="url(#mg2)"/>
+        <ellipse cx="600" cy="58" rx="70" ry="50" fill="url(#mg2)"/>
+        <rect x="530" y="58" width="140" height="40" fill="url(#mg2)"/>
+        <ellipse cx="460" cy="72" rx="44" ry="32" fill="url(#mg2)"/>
+        <rect x="416" y="72" width="88" height="26" fill="url(#mg2)"/>
+        <ellipse cx="740" cy="72" rx="44" ry="32" fill="url(#mg2)"/>
+        <rect x="696" y="72" width="88" height="26" fill="url(#mg2)"/>
+        <rect x="370" y="26" width="14" height="68" fill="url(#mg2)"/>
+        <polygon points="377,12 368,28 386,28" fill="url(#mg2)"/>
+        <rect x="816" y="26" width="14" height="68" fill="url(#mg2)"/>
+        <polygon points="823,12 814,28 832,28" fill="url(#mg2)"/>
+        <text x="594" y="24" font-size="16" fill="#c9a84c" opacity="0.7">&#9789;</text>
+      </svg>
     </div>
+  </div>
 
-    <div class="slide">
-        <h2>الثقافة والاقتصاد</h2>
-        <ul>
-            <li><strong>السكان:</strong> حوالي 42 مليون نسمة.</li>
-            <li><strong>اللغات:</strong> العربية والكردية.</li>
-            <li><strong>الثقافة:</strong> يشتهر بالفنون، الشعر، الهندسة، وأطباق مثل الكباب.</li>
-            <li><strong>الاقتصاد:</strong> من أكبر منتجي النفط عالمياً (الحصة الأكبر من الإيرادات).</li>
-            <li>تتواجد الزراعة على امتداد نهري دجلة والفرات.</li>
-        </ul>
-    </div>
+</div>
 
-    <div class="slide">
-        <h2>نظام الحكم</h2>
-        <ul>
-            <li>جمهورية برلمانية اتحادية (فيدرالية).</li>
-            <li>يتألف من: رئيس الجمهورية، رئيس الوزراء، ومجلس النواب.</li>
-            <li>تم إقرار الدستور الحالي عام 2005.</li>
-        </ul>
-        <div class="image-placeholder">[Image 3: Iraqi Parliament Building or Baghdad skyline]</div>
-    </div>
+<script>
+// STARFIELD
+const canvas = document.getElementById('stars-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
 
-    <div class="slide">
-        <h2>المفردات (Vocabulary)</h2>
-        <ul>
-            <li>1. العاصمة (Al-'Asimah) - Capital</li>
-            <li>2. الأنهار (Al-Anhar) - Rivers</li>
-            <li>3. الصحراء (As-Sahra') - Desert</li>
-            <li>4. حضارة (Hadarah) - Civilization</li>
-            <li>5. استقلال (Istiqlal) - Independence</li>
-            <li>6. اقتصاد (Iqtisad) - Economy</li>
-            <li>7. نفط (Naft) - Oil</li>
-            <li>8. حكومة (Hukumah) - Government</li>
-        </ul>
-    </div>
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
 
-    <div class="slide">
-        <h2>أسئلة للفصل والنشاط</h2>
-        <ul>
-            <li>1. ما اسما النهرين الرئيسيين اللذين يجريان عبر العراق؟</li>
-            <li>2. ما اسم الحضارة القديمة التي نشأت في العراق؟</li>
-            <li>3. ما اللغتان الرسميتان في العراق؟</li>
-            <li>4. ما المورد الطبيعي الأساسي للعراق؟</li>
-            <li>5. ما التغيير السياسي الكبير الذي شهده العراق عام 2003؟</li>
-        </ul>
-        <div class="image-placeholder"><strong>Activity:</strong> [Insert Link to Kahoot on Iraqi History & Geography here]</div>
-    </div>
+function initStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 2800);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.4 + 0.2,
+      alpha: Math.random() * 0.7 + 0.2,
+      speed: Math.random() * 0.004 + 0.001,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+}
 
+function drawStars(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    const a = s.alpha * (0.6 + 0.4 * Math.sin(t * s.speed + s.phase));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(220, 230, 255, ${a})`;
+    ctx.fill();
+  });
+  stars.slice(0, 12).forEach(s => {
+    const pulse = Math.sin(t * 0.003 + s.phase);
+    if (pulse > 0.92) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 168, 76, ${(pulse - 0.92) * 4})`;
+      ctx.fill();
+    }
+  });
+}
+
+let animT = 0;
+function animate() {
+  animT++;
+  drawStars(animT);
+  requestAnimationFrame(animate);
+}
+
+resize();
+initStars();
+animate();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// SCROLL REVEAL + DOTS
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function updateDots() {
+  let current = 0;
+  slides.forEach((slide, i) => {
+    const rect = slide.getBoundingClientRect();
+    if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5) {
+      current = i;
+    }
+  });
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+slides.forEach(s => observer.observe(s));
+window.addEventListener('scroll', updateDots, { passive: true });
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+slides[0].classList.add('visible');
+</script>
 </body>
 </html>
